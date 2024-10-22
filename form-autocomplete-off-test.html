@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Firefox Hidden Input Autocomplete Demo</title>
+  <script>
+    function checkHiddenInputs(form) {
+      var hiddenInputs = document.getElementsByTagName("input");
+      var hiddenInputsList = Array.prototype.slice.call(hiddenInputs);
+      hiddenInputsList.forEach(function(input) {
+        if (input.type === "hidden") {
+          if (input.value === "test") {
+            input.value = input.name;
+          }
+          else {
+            alert("The value of " + input.name + " is not \"test\". It is \"" + input.value + "\".");
+          }
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Firefox Hidden Input Autocomplete Demo</h1>
+  <p>
+    Below is a form with hidden inputs that have a hardcoded HTML value of "test". When you submit the form, the values of the hidden inputs will be checked. If the value is "test", the value will be changed to the name of the input. Otherwise, an alert with the value will be shown. One of the form inputs has the autocomplete attribute set to "off".
+  </p>
+  <p>
+  <strong>This form differs from the main form only in also setting the autocomplete="off" attribute on the outer form element.</strong>
+  </p>
+  <p>
+    You can try to reproduce the behavior in <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=520561#c6" target="_blank">this Firefox bug</a> by clicking submit, then reloading the page, then clicking submit again. When you click submit after reloading, the value of the hidden input without autocomplete set to "off" will be the name of the input, when it should be the hardcoded value "test".
+  </p>
+  <form action="javascript:;" onsubmit="checkHiddenInputs(this)" autocomplete="off">
+    <input type="hidden" name="youshouldntseethis" value="test">
+    <input type="hidden" name="youalsoshouldntseethis" value="test" autocomplete="off">
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
