@@ -26,7 +26,7 @@
     Below is a form with hidden inputs that have a hardcoded HTML value of "test". When you submit the form, the values of the hidden inputs will be checked. If the value is "test", the value will be changed to the name of the input. Otherwise, an alert with the value will be shown. One of the form inputs has the autocomplete attribute set to "off".
   </p>
   <p>
-  <strong>This form differs from the main form only in also setting the autocomplete="off" attribute on the outer form element.</strong>
+  <strong>This form differs from <a href="https://ryanfb.xyz/firefox-autocomplete-poc/">the main form</a> only in also setting the autocomplete="off" attribute on the outer form element.</strong>
   </p>
   <p>
     You can try to reproduce the behavior in <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=520561#c6" target="_blank">this Firefox bug</a> by clicking submit, then reloading the page, then clicking submit again. When you click submit after reloading, the value of the hidden input without autocomplete set to "off" will be the name of the input, when it should be the hardcoded value "test".
